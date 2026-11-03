@@ -2,9 +2,10 @@ import { useState, useEffect, useRef } from 'react';
 import './ContactForm.scss';
 import './ContactForm.media.scss';
 
-const apiBaseUrl = import.meta.env.DEV
-  ? ''
-  : (import.meta.env.VITE_API_URL || 'https://myportfoliobackend-rfum.onrender.com').replace(/\/+$/, '');
+const apiBaseUrl = (
+  import.meta.env.VITE_API_URL ||
+  (import.meta.env.DEV ? '' : 'https://myportfoliobackend-rfum.onrender.com')
+).replace(/\/+$/, '');
 
 export default function ContactForm() {
   const submissionInProgress = useRef(false);

@@ -7,10 +7,10 @@ services:
     healthCheckPath: /api/health
     envVars:
       - key: MAIL_PROVIDER
-        value: resend
-      - key: RESEND_API_KEY
+        value: smtp
+      - key: EMAIL
         sync: false
-      - key: RESEND_FROM
+      - key: EMAIL_PASS
         sync: false
       - key: CONTACT_EMAIL
         sync: false

@@ -100,7 +100,7 @@ app.post('/api/contact', async (req, res) => {
   const senderAddress = process.env.EMAIL_USER || process.env.EMAIL;
   const senderPassword = (process.env.EMAIL_PASS || '').replace(/\s/g, '');
   const mailProvider = process.env.MAIL_PROVIDER
-    || (process.env.NODE_ENV === 'production' ? 'resend' : 'smtp');
+    || 'smtp';
   const resendApiKey = process.env.RESEND_API_KEY || '';
   const resendFrom = process.env.RESEND_FROM || '';
   const recipientAddress = process.env.CONTACT_EMAIL || senderAddress;
