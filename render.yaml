@@ -4,6 +4,7 @@ services:
     runtime: node
     buildCommand: npm ci && npm run build
     startCommand: npm start
+    healthCheckPath: /api/health
     envVars:
       - key: EMAIL
         sync: false

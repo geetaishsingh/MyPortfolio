@@ -24,6 +24,10 @@ const escapeHtml = (value) =>
 app.disable('x-powered-by');
 app.use(express.json({ limit: '10kb' }));
 
+app.get('/api/health', (_req, res) => {
+  return res.status(200).json({ status: 'ok' });
+});
+
 app.post('/api/contact', async (req, res) => {
   const now = Date.now();
   const clientIp = req.ip || 'unknown';

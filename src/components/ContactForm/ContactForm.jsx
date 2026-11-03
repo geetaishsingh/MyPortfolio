@@ -98,7 +98,7 @@ export default function ContactForm() {
 
       if (typeof result?.message !== 'string') {
         throw new Error(
-          'Email server returned an unexpected response. Deploy the site as a Node.js web service so /api/contact reaches the mail server; static hosting cannot send email.'
+          'This website is not connected to the email service. Deploy the Node.js web service and use its URL; verify its /api/health endpoint returns {"status":"ok"}.'
         );
       }
 
