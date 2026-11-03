@@ -1,51 +1,66 @@
-import React from 'react';
-import { Award, Code2, HeartHandshake, MapPin, Rocket, Sparkles } from 'lucide-react';
-import { personalData } from '../../data/personal.js';
-import SectionTitle from '../common/SectionTitle/SectionTitle.jsx';
-import heroWebp from '../../assets/images/hero2.webp';
-import './About.scss';
+import React from "react";
+import {
+  Award,
+  Code2,
+  HeartHandshake,
+  MapPin,
+  Rocket,
+  Sparkles,
+} from "lucide-react";
+import { personalData } from "../../data/personal.js";
+import SectionTitle from "../common/SectionTitle/SectionTitle.jsx";
+import heroWebp from "../../assets/images/hero2.webp";
+import "./About.scss";
 
 const bio = [
   <>
-    I am a dedicated Web Developer based in India with a strong focus on modern frontend technologies,
-    particularly <strong>React</strong>, <strong>JavaScript (ES6+)</strong>, and <strong>SCSS/Sass</strong>.
-    I take pride in translating complex concepts into elegant, performant, and intuitive user interfaces.
+    I am a dedicated Web Developer based in India with a strong focus on modern
+    frontend technologies, particularly <strong>React</strong>,{" "}
+    <strong>JavaScript (ES6+)</strong>, and <strong>SCSS/Sass</strong>. I take
+    pride in translating complex concepts into elegant, performant, and
+    intuitive user interfaces.
   </>,
   <>
-    My approach blends technical precision with modern design sensibilities: modular folder structures,
-    strict separation of responsive styles, accessibility-first semantics, and tasteful interactive animations.
+    My approach blends technical precision with modern design sensibilities:
+    modular folder structures, strict separation of responsive styles,
+    accessibility-first semantics, and tasteful interactive animations.
   </>,
   <>
-    Whether building full single-page applications, architecting responsive component design systems, or coding
-    interactive mini-games, I am committed to continuous growth, clean codebase maintainability, and delivering
-    value through software.
-  </>
+    Whether building full single-page applications, architecting responsive
+    component design systems, or coding interactive mini-games, I am committed
+    to continuous growth, clean codebase maintainability, and delivering value
+    through software.
+  </>,
 ];
 
 const principles = [
   {
     icon: <Code2 size={24} />,
-    title: 'Component Architecture',
-    description: 'Designing modular, reusable, and maintainable component hierarchies with single responsibility.'
+    title: "Component Architecture",
+    description:
+      "Designing modular, reusable, and maintainable component hierarchies with single responsibility.",
   },
   {
     icon: <Rocket size={24} />,
-    title: 'Responsive & Accessible',
-    description: 'Building mobile-first, semantic interfaces that feel fluid across screens from 320px to 4K.'
+    title: "Responsive & Accessible",
+    description:
+      "Building mobile-first, semantic interfaces that feel fluid across screens from 320px to 4K.",
   },
   {
     icon: <Award size={24} />,
-    title: 'Performance & Styling',
-    description: 'Structuring clean Sass/SCSS with zero runtime bloat, minimal repaints, and smooth GSAP choreography.'
+    title: "Performance & Styling",
+    description:
+      "Structuring clean Sass/SCSS with zero runtime bloat, minimal repaints, and smooth GSAP choreography.",
   },
   {
     icon: <HeartHandshake size={24} />,
-    title: 'Continuous Innovation',
-    description: 'Staying curious, exploring bleeding-edge web standards, and building interactive web experiences.'
-  }
+    title: "Continuous Innovation",
+    description:
+      "Staying curious, exploring bleeding-edge web standards, and building interactive web experiences.",
+  },
 ];
 
-const About = ({ sectionId = 'about' }) => (
+const About = ({ sectionId = "about" }) => (
   <section className="about section" id={sectionId}>
     <div className="container">
       <SectionTitle
@@ -99,7 +114,11 @@ const About = ({ sectionId = 'about' }) => (
             <a href="#contact" className="about__cta-btn">
               Let&apos;s Work Together
             </a>
-            <a href="/Geeta.pdf" download="Geetaish-CV.pdf" className="about__cv-link">
+            <a
+              href="/Geetaish.pdf"
+              download="Geetaish.pdf"
+              className="hero__btn-primary"
+            >
               View My Resume (PDF) →
             </a>
           </div>

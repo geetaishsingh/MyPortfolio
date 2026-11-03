@@ -8,12 +8,12 @@ export const degrees = [
     degree: 'Bachelor of Computer Applications (BCA)',
     institution: 'University / Institute of Technology',
     location: 'India',
-    period: '2021 - 2024',
+    period: '2025 - 2028',
     description:
       'Graduated with honors. Rigorous coursework covering Data Structures & Algorithms, Object-Oriented Programming, Database Management Systems, Software Engineering, and Modern Web Architecture.',
     highlights: [
       'Top 5% Academic Standing in Computer Applications',
-      'Lead Project Lead for University Web Development Club',
+      'Lead Project Lead for University Collage Project',
       'Developed multiple campus and departmental portals'
     ]
   },
@@ -22,7 +22,7 @@ export const degrees = [
     degree: 'Senior Secondary Education (Class XII - Science)',
     institution: 'Higher Secondary School',
     location: 'India',
-    period: '2019 - 2021',
+    period: '2017 - 2020',
     description:
       'Major subjects: Mathematics, Physics, Chemistry, and Computer Science. Built a strong foundation in mathematical logic, algorithmic problem-solving, and fundamentals of computing.',
     highlights: [
