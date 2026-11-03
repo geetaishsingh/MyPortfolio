@@ -1,0 +1,26 @@
+@use '../../styles/abstracts/breakpoints' as *;
+
+@include tablet {
+  .contact-form {
+    padding: 1.5rem;
+
+    &__row {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    &__submit-btn {
+      width: 100%;
+    }
+  }
+}
+
+@include mobile {
+  .contact-form {
+    padding: 1.25rem;
+
+    &__textarea {
+      min-height: 100px;
+    }
+  }
+}

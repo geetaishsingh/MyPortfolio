@@ -1,0 +1,40 @@
+@use '../../styles/abstracts/breakpoints' as *;
+
+@include tablet {
+  .memory-match {
+    padding: 1.5rem;
+
+    &__grid {
+      max-width: 380px;
+      gap: 0.5rem;
+    }
+
+    &__card-img {
+      width: 28px;
+      height: 28px;
+    }
+
+    &__card-name {
+      font-size: 0.6rem;
+    }
+  }
+}
+
+@include mobile {
+  .memory-match {
+    padding: 1.25rem 0.75rem;
+
+    &__grid {
+      max-width: 320px;
+    }
+
+    &__card-icon {
+      font-size: 1.25rem;
+    }
+
+    &__card-img {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}

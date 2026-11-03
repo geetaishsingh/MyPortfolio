@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" width="100%" height="100%">
+  <defs>
+    <linearGradient id="certBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="50%" stop-color="#fbbf24" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2dd4bf" />
+      <stop offset="100%" stop-color="#0f766e" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="560" rx="16" fill="url(#certBg)" stroke="url(#goldGrad)" stroke-width="4" />
+  <rect x="20" y="20" width="760" height="520" rx="12" fill="none" stroke="#334155" stroke-width="2" stroke-dasharray="8 6" />
+
+  <!-- Badge Seal -->
+  <circle cx="400" cy="90" r="45" fill="url(#goldGrad)" opacity="0.15" />
+  <circle cx="400" cy="90" r="32" fill="none" stroke="url(#goldGrad)" stroke-width="3" />
+  <path d="M400 70 L408 86 L426 88 L412 101 L416 118 L400 109 L384 118 L388 101 L374 88 L392 86 Z" fill="url(#goldGrad)" />
+
+  <!-- Headers -->
+  <text x="400" y="165" font-family="'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="700" fill="#f8fafc" text-anchor="middle" letter-spacing="4">CERTIFICATE OF COMPLETION</text>
+  <text x="400" y="195" font-family="'Segoe UI', Roboto, sans-serif" font-size="14" fill="#94a3b8" text-anchor="middle" letter-spacing="2">THIS IS PROUDLY PRESENTED TO</text>
+
+  <!-- Recipient -->
+  <text x="400" y="255" font-family="'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="800" fill="#38bdf8" text-anchor="middle">Geetaish Singh Rajput</text>
+  <line x1="250" y1="270" x2="550" y2="270" stroke="url(#tealGrad)" stroke-width="2" />
+
+  <!-- Course description -->
+  <text x="400" y="310" font-family="'Segoe UI', Roboto, sans-serif" font-size="16" fill="#cbd5e1" text-anchor="middle">For successfully mastering advanced concepts in</text>
+  <text x="400" y="345" font-family="'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="700" fill="url(#goldGrad)" text-anchor="middle">Full Stack Web Development (MERN)</text>
+  <text x="400" y="375" font-family="'Segoe UI', Roboto, sans-serif" font-size="14" fill="#94a3b8" text-anchor="middle">Demonstrating proficiency in React, Node.js, Express, MongoDB &amp; REST APIs</text>
+
+  <!-- Footer Info -->
+  <line x1="100" y1="460" x2="280" y2="460" stroke="#475569" stroke-width="1.5" />
+  <text x="190" y="485" font-family="'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#f1f5f9" text-anchor="middle">Verified Instructor</text>
+  <text x="190" y="505" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Authorized Signature</text>
+
+  <rect x="350" y="430" width="100" height="70" rx="8" fill="#1e293b" stroke="#334155" />
+  <text x="400" y="458" font-family="'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700" fill="#10b981" text-anchor="middle">VERIFIED</text>
+  <text x="400" y="478" font-family="'Segoe UI', Roboto, sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">ID: GSR-8942-FS</text>
+
+  <line x1="520" y1="460" x2="700" y2="460" stroke="#475569" stroke-width="1.5" />
+  <text x="610" y="485" font-family="'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#f1f5f9" text-anchor="middle">Issued Date</text>
+  <text x="610" y="505" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">October 2024</text>
+</svg>

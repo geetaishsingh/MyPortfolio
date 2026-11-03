@@ -1,0 +1,45 @@
+@use '../../../styles/breakpoints' as *;
+@use '../../../styles/abstracts/variables' as typography;
+
+.section-header {
+  @include mobile {
+    &__title {
+      font-size: typography.$font-size-3xl;
+    }
+  }
+
+  @include tablet {
+    margin-bottom: 56px;
+
+    &__title {
+      font-size: typography.$font-size-4xl;
+    }
+
+    &__subtitle {
+      font-size: typography.$font-size-base;
+    }
+
+    &__line {
+      width: 80px;
+      height: 4px;
+    }
+  }
+
+  @include laptop {
+    &__title {
+      font-size: typography.$font-size-4xl;
+    }
+  }
+
+  @include desktop {
+    &__title {
+      font-size: typography.$font-size-4xl;
+    }
+  }
+
+  @include large-screen {
+    &__title {
+      font-size: typography.$font-size-4xl;
+    }
+  }
+}

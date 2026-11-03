@@ -1,0 +1,47 @@
+@use '../../styles/abstracts/variables' as *;
+@use '../../styles/abstracts/mixins' as *;
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: $radius-md;
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all $transition-base;
+
+  &:hover {
+    border-color: $color-primary;
+    color: $color-primary;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--card-glow);
+  }
+
+  &__icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__icon {
+    width: 20px;
+    height: 20px;
+    transition: transform $transition-base;
+
+    &--moon {
+      color: #64748b;
+    }
+
+    &--sun {
+      color: #f59e0b;
+    }
+  }
+
+  &:hover &__icon {
+    transform: rotate(20deg) scale(1.1);
+  }
+}

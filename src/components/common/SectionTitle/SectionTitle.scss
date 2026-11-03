@@ -1,0 +1,64 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+@use '../../../styles/abstracts/variables' as typography;
+
+.section-header {
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 2;
+
+  &--center {
+    text-align: center;
+    .section-header__line {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  &--left {
+    text-align: left;
+    .section-header__line {
+      margin-left: 0;
+    }
+  }
+
+  &__badge {
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--badge-bg);
+    color: var(--badge-text);
+    border: 1px solid var(--border-highlight);
+    border-radius: $radius-full;
+    font-size: typography.$font-size-xs;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+  }
+
+  &__title {
+    font-size: typography.$font-size-3xl;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  &__subtitle {
+    font-size: typography.$font-size-sm;
+    color: var(--text-secondary);
+    max-width: 620px;
+    margin: 0 auto 16px auto;
+    line-height: 1.6;
+  }
+
+  &__line {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, $primary-light, #38bdf8);
+    border-radius: $radius-full;
+  }
+}
+
+@import './SectionTitle.media';

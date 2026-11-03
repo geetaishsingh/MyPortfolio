@@ -1,0 +1,125 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+@use '../../../styles/abstracts/variables' as typography;
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-heading;
+  font-weight: 600;
+  border-radius: $radius-md;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all $transition-smooth;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid transparent;
+  gap: 8px;
+  line-height: 1;
+  user-select: none;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  // Sizes (base mobile-first)
+  &--sm {
+    padding: 8px 14px;
+    font-size: typography.$font-size-sm;
+    gap: 6px;
+  }
+
+  &--md {
+    padding: 12px 20px;
+    font-size: typography.$font-size-sm;
+    gap: 8px;
+  }
+
+  &--lg {
+    padding: 14px 26px;
+    font-size: typography.$font-size-base;
+    gap: 10px;
+  }
+
+  // Variants
+  &--primary {
+    background: linear-gradient(135deg, $primary 0%, #14b8a6 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(13, 148, 136, 0.35);
+
+    &:hover {
+      background: linear-gradient(135deg, #14b8a6 0%, #2dd4bf 100%);
+      color: #042f2e;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(45, 212, 191, 0.45);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  &--secondary {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-strong);
+
+    &:hover {
+      background: var(--bg-card-hover);
+      border-color: $primary-light;
+      color: $primary-light;
+      transform: translateY(-2px);
+    }
+  }
+
+  &--outline {
+    background: transparent;
+    border: 1.5px solid $primary-light;
+    color: $primary-light;
+
+    &:hover {
+      background: rgba(45, 212, 191, 0.12);
+      border-color: #38bdf8;
+      color: #38bdf8;
+      transform: translateY(-2px);
+    }
+  }
+
+  &--ghost {
+    background: transparent;
+    color: var(--text-secondary);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-primary);
+    }
+  }
+
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform $transition-fast;
+
+    &--right {
+      margin-left: 2px;
+    }
+
+    &--left {
+      margin-right: 2px;
+    }
+  }
+
+  &:hover &__icon--right {
+    transform: translateX(3px);
+  }
+
+  &:hover &__icon--left {
+    transform: translateX(-3px);
+  }
+}
+
+@import './Button.media';

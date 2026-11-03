@@ -1,0 +1,95 @@
+// Color palette
+$color-primary: #4ea3a3;
+$color-primary-hover: #3d8c8c;
+$color-primary-light: rgba(78, 163, 163, 0.12);
+$color-primary-glow: rgba(78, 163, 163, 0.35);
+
+$color-accent: #06b6d4;
+$color-success: #10b981;
+$color-warning: #f59e0b;
+$color-danger: #ef4444;
+
+// Light Theme values
+$light-bg: #f8fafc;
+$light-surface: #ffffff;
+$light-surface-subtle: #f1f5f9;
+$light-surface-elevated: #ffffff;
+$light-border: #e2e8f0;
+$light-border-hover: #cbd5e1;
+$light-text: #0f172a;
+$light-text-secondary: #475569;
+$light-text-muted: #94a3b8;
+$light-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.08);
+$light-shadow-lg: 0 20px 40px -15px rgba(15, 23, 42, 0.12);
+
+// Dark Theme values
+$dark-bg: #0b1120;
+$dark-surface: #131d33;
+$dark-surface-subtle: #17233d;
+$dark-surface-elevated: #1e2c4f;
+$dark-border: #1e2e4a;
+$dark-border-hover: #334a70;
+$dark-text: #f8fafc;
+$dark-text-secondary: #cbd5e1;
+$dark-text-muted: #64748b;
+$dark-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+$dark-shadow-lg: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+
+// Typography
+$font-family-base: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$font-family-code: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+$font-size-xs: 0.75rem;    // 12px
+$font-size-sm: 0.875rem;   // 14px
+$font-size-base: 1rem;     // 16px
+$font-size-lg: 1.125rem;   // 18px
+$font-size-xl: 1.25rem;    // 20px
+$font-size-2xl: 1.5rem;    // 24px
+$font-size-3xl: 1.875rem;  // 30px
+$font-size-4xl: 2.25rem;   // 36px
+$font-size-5xl: 3rem;      // 48px
+$font-size-6xl: 3.75rem;   // 60px
+
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-extrabold: 800;
+
+// Spacing scale
+$spacing-1: 0.25rem;  // 4px
+$spacing-2: 0.5rem;   // 8px
+$spacing-3: 0.75rem;  // 12px
+$spacing-4: 1rem;     // 16px
+$spacing-5: 1.25rem;  // 20px
+$spacing-6: 1.5rem;   // 24px
+$spacing-8: 2rem;     // 32px
+$spacing-10: 2.5rem;  // 40px
+$spacing-12: 3rem;    // 48px
+$spacing-16: 4rem;    // 64px
+$spacing-20: 5rem;    // 80px
+$spacing-24: 6rem;    // 96px
+
+// Border Radii
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+$radius-xl: 24px;
+$radius-full: 9999px;
+
+// Transitions
+$transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+// Container widths
+$container-max-width: 1200px;
+$container-padding: 1.5rem;
+
+// Z-index
+$z-dropdown: 100;
+$z-sticky: 500;
+$z-fixed: 800;
+$z-modal-backdrop: 900;
+$z-modal: 1000;
+$z-tooltip: 1100;

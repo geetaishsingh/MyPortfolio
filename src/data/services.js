@@ -1,0 +1,58 @@
+export const servicesData = [
+  {
+    id: 'custom-web-dev',
+    title: 'Custom Web Development',
+    description: 'Build any type of website as per your requirements with modern technologies.',
+    icon: 'Code2',
+    color: 'blue',
+  },
+  {
+    id: 'academic-projects',
+    title: 'College & Academic Projects',
+    description: 'Professional project development for school, college and academic needs.',
+    icon: 'GraduationCap',
+    color: 'purple',
+  },
+  {
+    id: 'freelance-dev',
+    title: 'Freelance Project Development',
+    description: 'End-to-end project-based work with clean code and on-time delivery.',
+    icon: 'Briefcase',
+    color: 'teal',
+  },
+  {
+    id: 'full-website-dev',
+    title: 'Full Website Development',
+    description: 'Complete website solutions from design to deployment with modern features.',
+    icon: 'Monitor',
+    color: 'amber',
+  },
+  {
+    id: 'ui-ux-dev',
+    title: 'Website UI/UX Development',
+    description: 'Beautiful, user-friendly and responsive UI/UX for better user experience.',
+    icon: 'Palette',
+    color: 'rose',
+  },
+  {
+    id: 'redesign-revamp',
+    title: 'Website Redesign & Revamp',
+    description: 'Give your old website a modern look with improved performance and design.',
+    icon: 'RotateCw',
+    color: 'sky',
+  },
+  {
+    id: 'backend-connectivity',
+    title: 'API Integration & Backend Connectivity',
+    description: 'Integrate APIs and connect frontend with backend seamlessly.',
+    icon: 'Database',
+    color: 'emerald',
+  },
+  {
+    id: 'bug-fixing',
+    title: 'Bug Fixing & Optimization',
+    description: 'Fix issues, improve performance and optimize your website for better speed and SEO.',
+    icon: 'Settings',
+    color: 'pink',
+  },
+];

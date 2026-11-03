@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" width="100%" height="100%">
+  <defs>
+    <linearGradient id="certBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0c1222" />
+      <stop offset="100%" stop-color="#162033" />
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="560" rx="16" fill="url(#certBg)" stroke="url(#cyanGrad)" stroke-width="4" />
+  <rect x="20" y="20" width="760" height="520" rx="12" fill="none" stroke="#334155" stroke-width="2" stroke-dasharray="8 6" />
+
+  <circle cx="400" cy="90" r="42" fill="#0284c7" opacity="0.15" />
+  <circle cx="400" cy="90" r="30" fill="none" stroke="#38bdf8" stroke-width="3" />
+  <!-- React atom symbol in seal -->
+  <ellipse cx="400" cy="90" rx="18" ry="7" fill="none" stroke="#38bdf8" stroke-width="2" transform="rotate(30 400 90)" />
+  <ellipse cx="400" cy="90" rx="18" ry="7" fill="none" stroke="#38bdf8" stroke-width="2" transform="rotate(90 400 90)" />
+  <ellipse cx="400" cy="90" rx="18" ry="7" fill="none" stroke="#38bdf8" stroke-width="2" transform="rotate(150 400 90)" />
+  <circle cx="400" cy="90" r="3" fill="#38bdf8" />
+
+  <text x="400" y="165" font-family="'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="700" fill="#f8fafc" text-anchor="middle" letter-spacing="4">SPECIALIZATION CERTIFICATE</text>
+  <text x="400" y="195" font-family="'Segoe UI', Roboto, sans-serif" font-size="14" fill="#94a3b8" text-anchor="middle" letter-spacing="2">AWARDED TO</text>
+
+  <text x="400" y="255" font-family="'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="800" fill="#38bdf8" text-anchor="middle">Geetaish Singh Rajput</text>
+  <line x1="250" y1="270" x2="550" y2="270" stroke="url(#cyanGrad)" stroke-width="2" />
+
+  <text x="400" y="310" font-family="'Segoe UI', Roboto, sans-serif" font-size="16" fill="#cbd5e1" text-anchor="middle">For excellence in modern frontend development and architecture</text>
+  <text x="400" y="345" font-family="'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="700" fill="#38bdf8" text-anchor="middle">Advanced React &amp; State Management</text>
+  <text x="400" y="375" font-family="'Segoe UI', Roboto, sans-serif" font-size="14" fill="#94a3b8" text-anchor="middle">Hooks, Context API, Redux Toolkit, Performance Optimization &amp; Single Page Apps</text>
+
+  <line x1="100" y1="460" x2="280" y2="460" stroke="#475569" stroke-width="1.5" />
+  <text x="190" y="485" font-family="'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#f1f5f9" text-anchor="middle">Certification Board</text>
+  <text x="190" y="505" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">Authorized Signature</text>
+
+  <rect x="350" y="430" width="100" height="70" rx="8" fill="#1e293b" stroke="#334155" />
+  <text x="400" y="458" font-family="'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700" fill="#10b981" text-anchor="middle">AUTHENTIC</text>
+  <text x="400" y="478" font-family="'Segoe UI', Roboto, sans-serif" font-size="9" fill="#94a3b8" text-anchor="middle">ID: GSR-3419-RC</text>
+
+  <line x1="520" y1="460" x2="700" y2="460" stroke="#475569" stroke-width="1.5" />
+  <text x="610" y="485" font-family="'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#f1f5f9" text-anchor="middle">Issued Date</text>
+  <text x="610" y="505" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">December 2024</text>
+</svg>

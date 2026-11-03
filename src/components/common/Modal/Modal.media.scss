@@ -1,0 +1,41 @@
+@use '../../../styles/breakpoints' as *;
+
+.modal-backdrop {
+  @include tablet {
+    padding: 32px;
+  }
+}
+
+.modal-container {
+  @include tablet {
+    max-width: 800px;
+  }
+
+  @include laptop {
+    max-width: 860px;
+  }
+
+  @include desktop {
+    max-width: 920px;
+  }
+
+  @include large-screen {
+    max-width: 980px;
+  }
+}
+
+.modal-header {
+  @include tablet {
+    padding: 20px 28px;
+
+    .modal-title {
+      font-size: 1.3rem;
+    }
+  }
+}
+
+.modal-body {
+  @include tablet {
+    padding: 28px;
+  }
+}

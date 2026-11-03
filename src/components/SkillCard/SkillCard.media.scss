@@ -1,0 +1,25 @@
+@use '../../styles/abstracts/breakpoints' as *;
+
+@include tablet {
+  .skill-card {
+    padding: 1.25rem;
+
+    &__icon-box {
+      width: 44px;
+      height: 44px;
+    }
+
+    &__icon {
+      width: 26px;
+      height: 26px;
+    }
+  }
+}
+
+@include mobile {
+  .skill-card {
+    &__header {
+      gap: 0.75rem;
+    }
+  }
+}

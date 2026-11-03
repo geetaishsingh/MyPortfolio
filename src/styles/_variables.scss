@@ -1,0 +1,93 @@
+// Color Palette
+$primary: #0d9488; // Deep rich teal
+$primary-light: #2dd4bf;
+$primary-dark: #0f766e;
+$primary-glow: rgba(45, 212, 191, 0.25);
+
+$accent: #6366f1; // Indigo accent
+$accent-pink: #ec4899;
+$accent-amber: #f59e0b;
+$accent-emerald: #10b981;
+
+// Typography
+$font-main: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+$font-mono: 'JetBrains Mono', monospace;
+
+// Transitions & Timing
+$transition-fast: 0.15s ease;
+$transition-base: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+$transition-bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+// Radius
+$radius-xs: 4px;
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+$radius-xl: 24px;
+$radius-full: 9999px;
+
+// Container widths
+$container-sm: 640px;
+$container-md: 768px;
+$container-lg: 1024px;
+$container-xl: 1240px;
+$container-2xl: 1400px;
+
+// Theme CSS Variable mappings
+:root {
+  --bg-primary: #0a0e17;
+  --bg-secondary: #111827;
+  --bg-card: rgba(17, 24, 39, 0.75);
+  --bg-card-hover: rgba(31, 41, 55, 0.85);
+  --bg-surface: #1e293b;
+  --bg-input: rgba(15, 23, 42, 0.6);
+
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-inverse: #0f172a;
+
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-highlight: rgba(45, 212, 191, 0.3);
+  --border-strong: rgba(255, 255, 255, 0.16);
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 25px rgba(45, 212, 191, 0.2);
+
+  --navbar-bg: rgba(10, 14, 23, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --badge-bg: rgba(45, 212, 191, 0.1);
+  --badge-text: #2dd4bf;
+}
+
+[data-theme='light'] {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-card: rgba(255, 255, 255, 0.9);
+  --bg-card-hover: #ffffff;
+  --bg-surface: #f1f5f9;
+  --bg-input: #ffffff;
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --text-inverse: #f8fafc;
+
+  --border-subtle: rgba(0, 0, 0, 0.08);
+  --border-highlight: rgba(13, 148, 136, 0.4);
+  --border-strong: rgba(0, 0, 0, 0.15);
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 14px -2px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 12px 30px -4px rgba(0, 0, 0, 0.1);
+  --shadow-glow: 0 0 25px rgba(13, 148, 136, 0.15);
+
+  --navbar-bg: rgba(248, 250, 252, 0.85);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --badge-bg: rgba(13, 148, 136, 0.1);
+  --badge-text: #0d9488;
+}

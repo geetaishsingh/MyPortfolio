@@ -1,0 +1,39 @@
+@use '../../styles/breakpoints' as *;
+@use '../../styles/abstracts/variables' as typography;
+
+.footer {
+  @include tablet {
+    padding: 70px 0 40px 0;
+
+    &__top {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &__links-group {
+      width: auto;
+      align-items: flex-end;
+    }
+
+    &__bottom {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  @include laptop {
+    &__logo-name {
+      font-size: typography.$font-size-xl;
+    }
+  }
+
+  @include desktop {
+    padding: 80px 0 44px 0;
+  }
+
+  @include large-screen {
+    // Large screen adjustments
+  }
+}

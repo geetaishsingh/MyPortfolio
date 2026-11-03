@@ -1,0 +1,47 @@
+@use '../../styles/abstracts/breakpoints' as *;
+
+@include laptop {
+  .games-page {
+    &__dashboard {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+  }
+}
+
+@include tablet {
+  .games-page {
+    padding-top: 1.5rem;
+    padding-bottom: 3rem;
+
+    &__header {
+      margin-bottom: 2rem;
+    }
+
+    &__title {
+      font-size: 2rem;
+    }
+
+    &__dashboard {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    &__card {
+      padding: 1rem;
+    }
+  }
+}
+
+@include mobile {
+  .games-page {
+    &__title {
+      font-size: 1.6rem;
+    }
+
+    &__card-icon {
+      font-size: 1.8rem;
+    }
+  }
+}

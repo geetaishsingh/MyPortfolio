@@ -1,0 +1,182 @@
+@use '../../styles/abstracts/variables' as *;
+@use '../../styles/abstracts/mixins' as *;
+
+.tic-tac-toe {
+  @include glass-card;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: $spacing-8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__header {
+    text-align: center;
+    margin-bottom: $spacing-6;
+  }
+
+  &__title {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: var(--text-color);
+    margin-bottom: $spacing-1;
+  }
+
+  &__subtitle {
+    font-size: $font-size-sm;
+    color: var(--text-secondary);
+  }
+
+  &__scoreboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-3;
+    width: 100%;
+    margin-bottom: $spacing-6;
+  }
+
+  &__score-card {
+    background-color: var(--surface-subtle);
+    border: 1px solid var(--border-color);
+    border-radius: $radius-md;
+    padding: $spacing-3;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    transition: all $transition-base;
+
+    &--active {
+      border-color: $color-primary;
+      background-color: $color-primary-light;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px $color-primary-glow;
+    }
+  }
+
+  &__score-label {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+  }
+
+  &__score-value {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-extrabold;
+    color: var(--text-color);
+  }
+
+  &__status-banner {
+    padding: $spacing-2 $spacing-4;
+    border-radius: $radius-full;
+    background-color: var(--surface-subtle);
+    border: 1px solid var(--border-color);
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    margin-bottom: $spacing-6;
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__status--win {
+    color: $color-success;
+    font-weight: $font-weight-bold;
+  }
+
+  &__status--tie {
+    color: $color-warning;
+    font-weight: $font-weight-bold;
+  }
+
+  &__status--turn {
+    strong {
+      color: $color-primary;
+    }
+  }
+
+  &__board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-3;
+    width: 100%;
+    max-width: 360px;
+    aspect-ratio: 1;
+    margin-bottom: $spacing-8;
+  }
+
+  &__cell {
+    background-color: var(--surface-subtle);
+    border: 2px solid var(--border-color);
+    border-radius: $radius-lg;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.75rem;
+    font-weight: $font-weight-extrabold;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all $transition-fast;
+    user-select: none;
+
+    &:hover:not(:disabled) {
+      background-color: var(--surface-color);
+      border-color: $color-primary;
+      transform: scale(1.03);
+    }
+
+    &:disabled {
+      cursor: default;
+    }
+
+    &--x {
+      color: $color-primary;
+      text-shadow: 0 0 16px $color-primary-glow;
+    }
+
+    &--o {
+      color: #06b6d4;
+      text-shadow: 0 0 16px rgba(6, 182, 212, 0.4);
+    }
+
+    &--winning {
+      background-color: rgba(16, 185, 129, 0.15);
+      border-color: $color-success;
+      color: $color-success !important;
+      animation: pulseWin 1s infinite alternate ease-in-out;
+    }
+  }
+
+  &__controls {
+    display: flex;
+    gap: $spacing-4;
+  }
+
+  &__btn {
+    @include button-base;
+
+    &--primary {
+      @include button-primary;
+      padding: 0.65rem 1.4rem;
+    }
+
+    &--secondary {
+      @include button-secondary;
+      padding: 0.65rem 1.4rem;
+    }
+  }
+}
+
+@keyframes pulseWin {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+  }
+  100% {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+  }
+}

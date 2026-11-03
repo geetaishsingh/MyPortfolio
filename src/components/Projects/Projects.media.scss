@@ -1,0 +1,48 @@
+@use '../../styles/breakpoints' as *;
+@use '../../styles/variables' as *;
+@use '../../styles/abstracts/variables' as typography;
+
+.projects {
+  @include mobile {
+    &__filter-btn {
+      font-size: typography.$font-size-sm;
+      padding: 9px 24px;
+    }
+  }
+
+  @include tablet {
+    &__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    &__body {
+      padding: 26px 24px;
+    }
+
+    &__title {
+      font-size: typography.$font-size-xl;
+    }
+  }
+
+  @include laptop {
+    &__grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+  }
+
+  @include desktop {
+    &__grid {
+      gap: 36px;
+    }
+
+    &__card {
+      border-radius: $radius-lg;
+    }
+  }
+
+  @include large-screen {
+    // High-res displays
+  }
+}

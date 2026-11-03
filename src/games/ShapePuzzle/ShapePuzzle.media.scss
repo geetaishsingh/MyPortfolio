@@ -1,0 +1,55 @@
+@use '../../styles/abstracts/breakpoints' as *;
+
+@include tablet {
+  .shape-puzzle {
+    padding: 1.5rem;
+
+    &__gameplay-row {
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    &__grid {
+      width: 280px;
+      height: 280px;
+    }
+
+    &__tile-symbol {
+      font-size: 1.4rem;
+    }
+  }
+}
+
+@include mobile {
+  .shape-puzzle {
+    padding: 1.25rem 0.75rem;
+
+    &__grid {
+      width: 100%;
+      max-width: 260px;
+      height: auto;
+    }
+
+    &__dashboard {
+      width: 100%;
+      justify-content: space-around;
+    }
+
+    &__stat {
+      padding: 0.5rem 1rem;
+    }
+  }
+
+  @include mobile-sm {
+    .shape-puzzle {
+      &__tile-name {
+        display: none;
+      }
+
+      &__tile-symbol {
+        font-size: 1.1rem;
+      }
+    }
+  }
+}

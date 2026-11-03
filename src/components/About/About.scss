@@ -1,0 +1,373 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/animations' as *;
+@use '../../styles/abstracts/mixins' as shared;
+@use '../../styles/abstracts/variables' as typography;
+
+.about {
+  position: relative;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  // Top Story Grid: Photo Card + Bio Card
+  &__story-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+    align-items: stretch;
+  }
+
+  // Left Photo Card
+  &__photo-card {
+    @include glassmorphism;
+    border-radius: $radius-lg;
+    padding: 24px;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    transition: border-color $transition-smooth, box-shadow $transition-smooth;
+
+    &:hover {
+      border-color: var(--border-highlight);
+      box-shadow: var(--shadow-lg), var(--shadow-glow);
+    }
+  }
+
+  &__photo-frame {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    aspect-ratio: 4 / 4.2;
+    border-radius: $radius-lg;
+    overflow: hidden;
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border-subtle);
+    box-shadow: var(--shadow-sm);
+  }
+
+  &__photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    transition: transform $transition-smooth;
+
+    &:hover {
+      transform: scale(1.03);
+    }
+  }
+
+  &__photo-picture {
+    display: contents;
+  }
+
+  &__photo-badge {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    right: 14px;
+    padding: 10px 14px;
+    background: rgba(10, 14, 23, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: $radius-md;
+    border: 1px solid rgba(45, 212, 191, 0.3);
+    color: $primary-light;
+    font-size: typography.$font-size-sm;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  }
+
+  &__photo-info {
+    text-align: center;
+    width: 100%;
+  }
+
+  &__photo-name {
+    font-size: typography.$font-size-xl;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  &__photo-role {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: typography.$font-size-xs;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  // Right Bio Card
+  &__bio-card {
+    @include glassmorphism;
+    border-radius: $radius-lg;
+    padding: 32px 24px;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 24px;
+    transition: border-color $transition-smooth, box-shadow $transition-smooth;
+
+    &:hover {
+      border-color: var(--border-highlight);
+      box-shadow: var(--shadow-lg), var(--shadow-glow);
+    }
+  }
+
+  &__bio-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__bio-tag {
+    font-size: typography.$font-size-xs;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: $primary-light;
+  }
+
+  &__bio-title {
+    font-size: typography.$font-size-2xl;
+    font-weight: 800;
+    line-height: 1.3;
+    color: var(--text-primary);
+    letter-spacing: -0.3px;
+  }
+
+  &__bio-paragraphs {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  &__bio-text {
+    font-size: typography.$font-size-sm;
+    color: var(--text-secondary);
+    line-height: 1.7;
+
+    &:first-of-type {
+      color: var(--text-primary);
+      font-size: typography.$font-size-base;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+  }
+
+  &__cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+    padding-top: 6px;
+  }
+
+  &__cta-btn {
+    @include shared.button-primary;
+    padding: 12px 22px;
+  }
+
+  &__cv-link {
+    color: var(--badge-text);
+    font-weight: 600;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: $primary-light;
+    }
+  }
+
+  &__bio-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  &__bio-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: $radius-full;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    font-size: typography.$font-size-xs;
+    font-weight: 600;
+    color: var(--text-primary);
+    transition: all $transition-fast;
+
+    &:hover {
+      border-color: $primary-light;
+      background: rgba(45, 212, 191, 0.08);
+      color: $primary-light;
+    }
+
+    &-icon {
+      color: $primary-light;
+    }
+  }
+
+  // Middle Section: Unified Metrics Strip
+  &__metrics-strip {
+    @include glassmorphism;
+    border-radius: $radius-lg;
+    padding: 24px 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-subtle);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, $primary-light, #38bdf8, transparent);
+      animation: shimmer 6s linear infinite;
+      background-size: 200% 100%;
+    }
+  }
+
+  &__metric-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 12px;
+    position: relative;
+    transition: transform $transition-fast;
+
+    &:hover {
+      transform: translateY(-3px);
+    }
+  }
+
+  &__metric-value {
+    font-family: $font-heading;
+    font-size: typography.$font-size-4xl;
+    font-weight: 800;
+    line-height: 1.1;
+    @include gradient-text($primary-light, #38bdf8);
+    margin-bottom: 6px;
+  }
+
+  &__metric-label {
+    font-size: typography.$font-size-xs;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  // Bottom Section: Pillars
+  &__pillars {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__pillars-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__pillars-title {
+    font-size: typography.$font-size-lg;
+    font-weight: 700;
+    color: var(--text-primary);
+    white-space: nowrap;
+  }
+
+  &__pillars-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border-subtle);
+  }
+
+  &__pillars-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  &__pillar-card {
+    @include glassmorphism;
+    border-radius: $radius-lg;
+    padding: 22px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    box-shadow: var(--shadow-sm);
+    transition: all $transition-smooth;
+
+    &:hover {
+      border-color: var(--border-highlight);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md), var(--shadow-glow);
+
+      .about__pillar-icon {
+        background: $primary;
+        color: #ffffff;
+        border-color: transparent;
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  &__pillar-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: $radius-md;
+    background: rgba(45, 212, 191, 0.12);
+    border: 1px solid rgba(45, 212, 191, 0.25);
+    color: $primary-light;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all $transition-fast;
+  }
+
+  &__pillar-body {
+    flex: 1;
+  }
+
+  &__pillar-heading {
+    font-size: typography.$font-size-base;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  &__pillar-desc {
+    font-size: typography.$font-size-sm;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+}
+
+@import './About.media';

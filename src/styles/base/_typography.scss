@@ -1,0 +1,61 @@
+@use '../abstracts/variables' as *;
+
+body {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-base;
+  font-weight: $font-weight-bold;
+  line-height: 1.25;
+  color: var(--text-color);
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp($font-size-3xl, 5vw, $font-size-5xl);
+  font-weight: $font-weight-extrabold;
+}
+
+h2 {
+  font-size: clamp($font-size-2xl, 3.5vw, $font-size-4xl);
+}
+
+h3 {
+  font-size: clamp($font-size-xl, 2.5vw, $font-size-2xl);
+}
+
+h4 {
+  font-size: $font-size-xl;
+}
+
+h5 {
+  font-size: $font-size-lg;
+}
+
+h6 {
+  font-size: $font-size-base;
+}
+
+p {
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+small {
+  font-size: $font-size-xs;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, $color-primary 0%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.stroke-text {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--text-color);
+}

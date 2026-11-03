@@ -1,0 +1,99 @@
+.home__section-slot {
+  min-height: 0;
+}
+
+.home__section-slot--about {
+  min-height: 1421px;
+}
+
+.home__section-slot--services {
+  min-height: 600px;
+}
+
+.home__section-slot--skills {
+  min-height: 976px;
+}
+
+.home__section-slot--projects {
+  min-height: 1645px;
+}
+
+.home__section-slot--education {
+  min-height: 2283px;
+}
+
+.home__section-slot--contact {
+  min-height: 894px;
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .home__section-slot--about { min-height: 1577px; }
+  .home__section-slot--services { min-height: 600px; }
+  .home__section-slot--skills { min-height: 1319px; }
+  .home__section-slot--projects { min-height: 1652px; }
+  .home__section-slot--education { min-height: 2227px; }
+  .home__section-slot--contact { min-height: 894px; }
+}
+
+@media (min-width: 1025px) and (max-width: 1279px) {
+  .home__section-slot--skills { min-height: 1039px; }
+}
+
+@media (min-width: 900px) and (max-width: 1023px) {
+  .home__section-slot--about { min-height: 1688px; }
+  .home__section-slot--services { min-height: 750px; }
+  .home__section-slot--skills { min-height: 1313px; }
+  .home__section-slot--projects { min-height: 2155px; }
+  .home__section-slot--education { min-height: 2315px; }
+  .home__section-slot--contact { min-height: 889px; }
+}
+
+@media (min-width: 768px) and (max-width: 899px) {
+  .home__section-slot--about { min-height: 1900px; }
+  .home__section-slot--services { min-height: 750px; }
+  .home__section-slot--skills { min-height: 1290px; }
+  .home__section-slot--projects { min-height: 2293px; }
+  .home__section-slot--education { min-height: 2258px; }
+  .home__section-slot--contact { min-height: 1466px; }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .home__section-slot--about { min-height: 2274px; }
+  .home__section-slot--services { min-height: 1200px; }
+  .home__section-slot--skills { min-height: 1342px; }
+  .home__section-slot--projects { min-height: 4089px; }
+  .home__section-slot--education { min-height: 3500px; }
+  .home__section-slot--contact { min-height: 1409px; }
+}
+
+@media (max-width: 480px) {
+  .home__section-slot--about { min-height: 2709px; }
+  .home__section-slot--services { min-height: 1300px; }
+  .home__section-slot--skills { min-height: 1957px; }
+  .home__section-slot--projects { min-height: 3925px; }
+  .home__section-slot--education { min-height: 3452px; }
+  .home__section-slot--contact { min-height: 1465px; }
+}
+
+@media (min-width: 400px) and (max-width: 409px) {
+  .home__section-slot--about { min-height: 2654px; }
+}
+
+@media (min-width: 410px) and (max-width: 439px) {
+  .home__section-slot--about { min-height: 2588px; }
+}
+
+@media (min-width: 440px) and (max-width: 449px) {
+  .home__section-slot--about { min-height: 2567px; }
+}
+
+@media (min-width: 450px) and (max-width: 480px) {
+  .home__section-slot--about { min-height: 2513px; }
+}
+
+@media (min-width: 1536px) {
+  .home__section-slot--about { min-height: 1473px; }
+  .home__section-slot--services { min-height: 600px; }
+  .home__section-slot--projects { min-height: 1646px; }
+  .home__section-slot--education { min-height: 2299px; }
+}

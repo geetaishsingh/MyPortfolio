@@ -1,0 +1,134 @@
+@use '../../styles/abstracts/variables' as *;
+@use '../../styles/abstracts/mixins' as *;
+
+.contact {
+  background-color: var(--surface-subtle);
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: $spacing-10;
+    align-items: stretch;
+  }
+
+  &__info-panel {
+    @include glass-card;
+    padding: $spacing-8;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-6;
+  }
+
+  &__form-panel,
+  .contact-form-container {
+    display: flex;
+  }
+
+  .contact-form-container,
+  .contact-form {
+    flex: 1;
+  }
+
+  &__info-title {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: var(--text-color);
+  }
+
+  &__info-desc {
+    font-size: $font-size-sm;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-5;
+  }
+
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-4;
+
+    &-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: $radius-md;
+      background-color: var(--surface-subtle);
+      border: 1px solid var(--border-color);
+      color: $color-primary;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    &-label {
+      display: block;
+      font-size: $font-size-xs;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    &-value {
+      font-size: $font-size-sm;
+      font-weight: $font-weight-semibold;
+      color: var(--text-color);
+      transition: color $transition-base;
+
+      &:hover {
+        color: $color-primary;
+      }
+    }
+  }
+
+  &__social-wrap {
+    border-top: 1px solid var(--border-color);
+    padding-top: $spacing-6;
+  }
+
+  &__social-title {
+    display: block;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: $spacing-3;
+  }
+
+  &__social-icons {
+    display: flex;
+    gap: $spacing-3;
+  }
+
+  &__social-link {
+    width: 42px;
+    height: 42px;
+    border-radius: $radius-md;
+    border: 1px solid var(--border-color);
+    background-color: var(--surface-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all $transition-base;
+
+    color: var(--text-color);
+
+    svg {
+      flex-shrink: 0;
+    }
+
+    &:hover {
+      background-color: $color-primary;
+      border-color: $color-primary;
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px $color-primary-glow;
+    }
+  }
+}

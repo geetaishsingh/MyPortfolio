@@ -1,0 +1,54 @@
+@use '../../styles/abstracts/breakpoints' as *;
+
+@include laptop {
+  .header {
+    &__list {
+      gap: 1.5rem;
+    }
+  }
+}
+
+@include tablet {
+  .header {
+    &__nav {
+      display: none;
+    }
+
+    &__cta-btn {
+      display: none;
+    }
+
+    &__hamburger {
+      display: flex;
+    }
+
+    &__mobile-menu {
+      display: block;
+    }
+
+    &__games-btn span:last-child {
+      display: none;
+    }
+
+    &__games-btn {
+      padding: 0.5rem 0.75rem;
+    }
+  }
+}
+
+@include mobile {
+  .header {
+    &__container {
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem;
+    }
+
+    &__logo {
+      height: 36px;
+    }
+
+    &__actions {
+      gap: 0.5rem;
+    }
+  }
+}

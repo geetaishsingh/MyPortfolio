@@ -1,0 +1,127 @@
+@use '../../styles/abstracts/breakpoints' as *;
+@use '../../styles/abstracts/variables' as typography;
+
+@include laptop {
+  .hero {
+    &__grid {
+      grid-template-columns: 320px 1fr;
+      gap: 2rem;
+    }
+
+    &__content {
+      padding: 2.5rem;
+    }
+
+    &__heading {
+      font-size: typography.$font-size-4xl;
+    }
+  }
+}
+
+@include tablet {
+  .hero {
+    padding-top: 2rem;
+
+    &__grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    &__profile-card {
+      padding: 2rem;
+    }
+
+    &__profile-img-wrap {
+      width: 170px;
+      height: 170px;
+    }
+
+    &__content {
+      padding: 2rem;
+      text-align: center;
+      align-items: center;
+    }
+
+    &__greeting-badge {
+      align-self: center;
+    }
+
+    &__heading {
+      font-size: typography.$font-size-3xl;
+    }
+
+    &__availability {
+      justify-content: center;
+    }
+
+    &__lead {
+      text-align: center;
+    }
+
+    &__actions {
+      justify-content: center;
+    }
+  }
+}
+
+@include mobile {
+  .hero {
+    &__heading {
+      font-size: typography.$font-size-2xl;
+    }
+
+    &__actions {
+      flex-direction: column;
+      width: 100%;
+
+      a, button {
+        width: 100%;
+      }
+    }
+
+    &__ticker {
+      padding: 20px 14px;
+    }
+
+    &__ticker-header {
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    &__ticker-title {
+      font-size: typography.$font-size-xs;
+      text-align: center;
+    }
+
+    &__ticker-count {
+      font-size: typography.$font-size-xs;
+    }
+
+    &__ticker-item {
+      min-width: 88px;
+      padding: 0 12px;
+    }
+
+    &__ticker-icon-box {
+      width: 48px;
+      height: 48px;
+    }
+
+    &__ticker-icon {
+      width: 28px;
+      height: 28px;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .hero__ticker {
+    padding: 34px 32px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .hero__ticker {
+    padding: 36px 40px;
+  }
+}

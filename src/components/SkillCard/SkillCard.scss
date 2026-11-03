@@ -1,0 +1,111 @@
+@use '../../styles/abstracts/variables' as *;
+@use '../../styles/abstracts/mixins' as *;
+
+.skill-card {
+  @include glass-card;
+  padding: $spacing-6;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 0;
+    background: linear-gradient(to bottom, $color-primary, #06b6d4);
+    transition: height $transition-base;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+
+    &::before {
+      height: 100%;
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: $spacing-4;
+    margin-bottom: $spacing-3;
+  }
+
+  &__icon-box {
+    width: 52px;
+    height: 52px;
+    border-radius: $radius-md;
+    background-color: var(--surface-subtle);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-2;
+    flex-shrink: 0;
+    transition: transform $transition-base;
+  }
+
+  &:hover &__icon-box {
+    transform: scale(1.1) rotate(4deg);
+    border-color: $color-primary;
+  }
+
+  &__icon {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+  }
+
+  &__title-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__name {
+    font-size: $font-size-base;
+    font-weight: $font-weight-bold;
+    color: var(--text-color);
+  }
+
+  &__level-badge {
+    display: inline-block;
+    align-self: flex-start;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+    padding: 2px 8px;
+    border-radius: $radius-full;
+
+    &--core-focus,
+    &--advanced {
+      color: var(--text-color);
+      background-color: rgba(20, 184, 166, 0.16);
+    }
+
+    &--intermediate {
+      color: var(--text-color);
+      background-color: rgba(59, 130, 246, 0.16);
+    }
+
+    &--proficient {
+      color: var(--text-color);
+      background-color: rgba(139, 92, 246, 0.16);
+    }
+
+    &--foundational {
+      color: var(--text-color);
+      background-color: rgba(245, 158, 11, 0.18);
+    }
+  }
+
+  &__description {
+    font-size: $font-size-sm;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    flex-grow: 1;
+  }
+}

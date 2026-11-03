@@ -1,0 +1,13 @@
+@use '../../styles/abstracts/breakpoints' as *;
+
+@include tablet {
+  .theme-toggle {
+    width: 38px;
+    height: 38px;
+
+    &__icon {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}

@@ -1,0 +1,56 @@
+@use '../../styles/breakpoints' as *;
+@use '../../styles/abstracts/variables' as typography;
+
+.education {
+  @include mobile {
+    &__tab-btn {
+      padding: 10px 22px;
+      font-size: typography.$font-size-sm;
+    }
+
+  }
+
+  @include tablet {
+    .container {
+      gap: 44px;
+    }
+
+    &__certs-container--grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    &__degree-card {
+      padding: 26px 24px;
+    }
+
+    &__column-header {
+      padding-bottom: 18px;
+    }
+
+    &__column-title {
+      font-size: typography.$font-size-2xl;
+    }
+  }
+
+  @include laptop {
+    &__certs-container--grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 28px;
+    }
+  }
+
+  @include desktop {
+    &__degree-card {
+      padding: 28px 26px;
+    }
+
+    &__cert-info {
+      padding: 22px;
+    }
+  }
+
+  @include large-screen {
+    // Large screen adjustments
+  }
+}
