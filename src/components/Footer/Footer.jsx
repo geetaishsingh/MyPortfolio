@@ -59,7 +59,6 @@ const Footer = () => {
                   decoding="async"
                 />
               </picture>
-              <span className="footer__logo-name">Geetaish Singh Rajput</span>
             </div>
             <p className="footer__tagline">
               Crafting modern, scalable, and delightful digital interfaces. Always learning, building, and evolving.
