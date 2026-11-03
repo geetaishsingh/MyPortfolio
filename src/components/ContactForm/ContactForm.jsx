@@ -125,7 +125,7 @@ export default function ContactForm() {
       }
 
       setStatus('success');
-      setStatusMessage(`Thank you, ${formData.fullName}! Your message has been sent.`);
+      setStatusMessage("Thank you! We'll connect with you soon.");
       setFormData({ fullName: '', email: '', subject: '', message: '' });
       idempotencyRequest.current = { payload: '', key: '' };
     } catch (error) {

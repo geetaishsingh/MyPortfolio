@@ -1,6 +1,5 @@
 import { ArrowRight, Github, Instagram, Linkedin } from 'lucide-react';
-import profileImg from '../../assets/images/profile.jpeg';
-import profileWebp from '../../assets/images/profile.webp';
+import heroWebp from '../../assets/images/hero.webp';
 import { tickerSkills } from '../../data/tickerSkills';
 import './Hero.scss';
 import './Hero.media.scss';
@@ -13,18 +12,15 @@ export default function Hero() {
           {/* Profile Card (Left) */}
           <div className="hero__profile-card">
             <div className="hero__profile-img-wrap">
-              <picture className="hero__profile-picture">
-                <source srcSet={profileWebp} type="image/webp" />
-                <img
-                  src={profileImg}
-                  alt="Geetaish Singh"
-                  className="hero__profile-img"
-                  width="823"
-                  height="810"
-                  fetchPriority="high"
-                  decoding="async"
-                />
-              </picture>
+              <img
+                src={heroWebp}
+                alt="Geetaish Singh"
+                className="hero__profile-img"
+                width="1297"
+                height="1213"
+                fetchPriority="high"
+                decoding="async"
+              />
             </div>
 
             <h2 className="hero__profile-name">Geetaish Singh</h2>

@@ -40,8 +40,8 @@ const Footer = () => {
                   src={logoImg}
                   alt="Geetaish Logo"
                   className="footer__logo-img"
-                  width="965"
-                  height="336"
+                  width="2172"
+                  height="724"
                   loading="lazy"
                   decoding="async"
                 />

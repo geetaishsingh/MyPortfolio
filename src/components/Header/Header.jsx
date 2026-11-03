@@ -65,8 +65,8 @@ export default function Header() {
               src={logoImg}
               alt="Geetaish Logo"
               className="header__logo"
-              width="965"
-              height="336"
+              width="2172"
+              height="724"
               fetchPriority="high"
               decoding="async"
             />

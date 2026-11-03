@@ -2,8 +2,7 @@ import React from 'react';
 import { Award, Code2, HeartHandshake, MapPin, Rocket, Sparkles } from 'lucide-react';
 import { personalData } from '../../data/personal.js';
 import SectionTitle from '../common/SectionTitle/SectionTitle.jsx';
-import profileImg from '../../assets/images/profile.jpeg';
-import profileWebp from '../../assets/images/profile.webp';
+import heroWebp from '../../assets/images/hero2.webp';
 import './About.scss';
 
 const bio = [
@@ -58,18 +57,15 @@ const About = ({ sectionId = 'about' }) => (
       <div className="about__story-grid">
         <div className="about__photo-card">
           <div className="about__photo-frame">
-            <picture className="about__photo-picture">
-              <source srcSet={profileWebp} type="image/webp" />
-              <img
-                src={profileImg}
-                alt={personalData.name}
-                className="about__photo-img"
-                width="823"
-                height="810"
-                loading="lazy"
-                decoding="async"
-              />
-            </picture>
+            <img
+              src={heroWebp}
+              alt={personalData.name}
+              className="about__photo-img"
+              width="1254"
+              height="1254"
+              loading="lazy"
+              decoding="async"
+            />
             <div className="about__photo-badge">
               <Sparkles size={16} />
               <span>2+ Years of Coding Passion</span>
