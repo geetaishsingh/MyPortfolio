@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: my-portfolio
+    runtime: node
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    envVars:
+      - key: EMAIL
+        sync: false
+      - key: EMAIL_PASS
+        sync: false

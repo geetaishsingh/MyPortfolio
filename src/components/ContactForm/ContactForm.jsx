@@ -98,7 +98,7 @@ export default function ContactForm() {
 
       if (typeof result?.message !== 'string') {
         throw new Error(
-          'Email server returned an unexpected response. Make sure the Node mail server is running and /api/contact is routed to it.'
+          'Email server returned an unexpected response. Deploy the site as a Node.js web service so /api/contact reaches the mail server; static hosting cannot send email.'
         );
       }
 

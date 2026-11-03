@@ -8,4 +8,6 @@ The contact form sends mail through Gmail SMTP on the Node server. Gmail credent
 4. Run `npm run dev`. The Vite development server proxies `/api/contact` to the mail server.
 5. Submit the contact form. It only reports success after Gmail accepts the message.
 
-For production, deploy this project to a Node.js host: run `npm run build`, set `EMAIL`, `EMAIL_PASS`, and optionally `CONTACT_EMAIL` as private host environment variables, then run `npm start`. The server serves the built site and the mail API together. A static-only host cannot run this mail endpoint.
+For production, deploy this project as a Node.js web service, not as a static site. The included `render.yaml` configures a Render web service with the required build and start commands. Create or update the service from the repository's Blueprint, then enter `EMAIL` and a newly generated `EMAIL_PASS` as private environment variables in Render. Optionally set `CONTACT_EMAIL`; if omitted, messages are delivered to `EMAIL`.
+
+The Node server serves the built site and `/api/contact` from the same origin. A static-only deployment cannot run this mail endpoint and may return the website HTML where the form expects API JSON.
