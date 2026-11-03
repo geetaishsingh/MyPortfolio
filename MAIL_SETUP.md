@@ -1,13 +1,24 @@
 # Contact form email setup
 
-The contact form sends mail through Gmail SMTP on the Node server. Gmail credentials are only read by the server and must never use a `VITE_` variable.
+The contact form sends through the Resend HTTPS API in production and Gmail SMTP for local development. Secrets are only read by the backend and must never use a `VITE_` variable.
 
-1. Revoke any Gmail app password exposed outside Render.
-2. Enable 2-Step Verification on the Gmail account, then create a new app password from Google Account security settings.
-3. Copy `.env.example` to `.env` and set `EMAIL_USER` (or legacy `EMAIL`), `EMAIL_PASS`, and optionally `CONTACT_EMAIL`. Gmail app-password grouping spaces are removed by the server. `.env` is ignored by Git.
-4. Run `npm run dev`. The Vite development server proxies `/api/contact` to the mail server.
-5. Submit the contact form. It reports success only after Gmail's SMTP server accepts the message.
+The deployed Render `/api/contact` request was returning a 504 SMTP timeout. The backend was waiting on Gmail SMTP port 465; the live error confirms the timeout, while the health and CORS endpoints work. Render production is now configured to use Resend over HTTPS instead of SMTP.
 
-For production, deploy this project as a Node.js web service, not as a static site. The included `render.yaml` configures a Render web service with the required build and start commands and checks `/api/health` after deploy. Set `EMAIL_USER` (or existing `EMAIL`) and `EMAIL_PASS` as private Render environment variables; `EMAIL_PASS` must be a Gmail app password. SMTP uses `smtp.gmail.com` over TLS on port 465 with bounded connection, greeting, socket, and send timeouts. The backend allows `https://myportfolio-1zqp.onrender.com` by default; set `FRONTEND_URL` only if you need to allow additional exact frontend origins (comma-separated, scheme and hostname only). Optionally set `CONTACT_EMAIL`; if omitted, messages are delivered to the configured sender address.
+## Render setup
 
-The contact form posts to `/api/contact`. In production it uses `VITE_API_URL` when set, or defaults to `https://myportfoliobackend-rfum.onrender.com`; set `VITE_API_URL` to the backend origin in the frontend host's build environment if you use a different backend. Local development keeps using the Vite `/api` proxy. The frontend and backend reuse an idempotency key for retries of the same form contents to prevent duplicate sends on a running backend process. After deployment, open `https://<your-node-service>.onrender.com/api/health`; it must return `{"status":"ok"}`. The health endpoint confirms the Node service is up, but only a successful `/api/contact` request confirms Gmail accepted the email; it cannot guarantee final inbox placement.
+1. Create a Resend account and verify a sender domain/address. Create an API key with permission to send from that sender.
+2. In Render's backend service environment, set:
+   - `MAIL_PROVIDER=resend`
+   - `RESEND_API_KEY` to the private Resend API key
+   - `RESEND_FROM` to a sender identity verified by Resend (for example, `Portfolio Contact <contact@your-verified-domain.com>`)
+   - `CONTACT_EMAIL` to the inbox that should receive portfolio messages
+3. Render production no longer needs `EMAIL` or `EMAIL_PASS`; remove those old values from the Render service after switching. Keep local Gmail SMTP credentials only in the ignored local `.env` if needed. Revoke and replace any Gmail app password that was exposed.
+4. Deploy the backend. The checked-in `render.yaml` sets `MAIL_PROVIDER=resend` and prompts for the other values when configured as a Blueprint.
+
+The backend sends mail through Resend's HTTPS API with a bounded 16-second request. It returns success only after Resend responds with an email ID. A successful provider response confirms acceptance for sending, not final inbox placement. Check the Resend email logs and destination inbox to confirm delivery. Provider/API errors are logged without the API key and returned as explicit API errors.
+
+## Local development
+
+Local development defaults to Gmail SMTP. Copy `.env.example` to `.env` and set `EMAIL` (or `EMAIL_USER`), `EMAIL_PASS`, and optionally `CONTACT_EMAIL`. Gmail app-password grouping spaces are removed by the server. `.env` is ignored by Git. To test Resend locally, set `MAIL_PROVIDER=resend`, `RESEND_API_KEY`, `RESEND_FROM`, and `CONTACT_EMAIL`.
+
+The form posts to `/api/contact`; local Vite requests are proxied to the Node server. In production, the frontend uses `VITE_API_URL` if set, or defaults to `https://myportfoliobackend-rfum.onrender.com`. The frontend and backend reuse an idempotency key for retries of identical form contents. The `/api/health` endpoint only confirms the service is running; it does not test email delivery.

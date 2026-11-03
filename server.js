@@ -99,10 +99,24 @@ app.post('/api/contact', async (req, res) => {
 
   const senderAddress = process.env.EMAIL_USER || process.env.EMAIL;
   const senderPassword = (process.env.EMAIL_PASS || '').replace(/\s/g, '');
+  const mailProvider = process.env.MAIL_PROVIDER
+    || (process.env.NODE_ENV === 'production' ? 'resend' : 'smtp');
+  const resendApiKey = process.env.RESEND_API_KEY || '';
+  const resendFrom = process.env.RESEND_FROM || '';
+  const recipientAddress = process.env.CONTACT_EMAIL || senderAddress;
 
-  if (!senderAddress || !senderPassword) {
+  if (!['resend', 'smtp'].includes(mailProvider)) {
+    return res.status(503).json({ error: 'Email service provider is misconfigured on the server.' });
+  }
+
+  if (
+    (mailProvider === 'resend' && (!resendApiKey || !resendFrom || !recipientAddress)) ||
+    (mailProvider === 'smtp' && (!senderAddress || !senderPassword))
+  ) {
     return res.status(503).json({
-      error: 'Email delivery is not configured. Set EMAIL_USER (or EMAIL) and EMAIL_PASS on the server.',
+      error: mailProvider === 'resend'
+        ? 'Email delivery is not configured. Set RESEND_API_KEY, RESEND_FROM, and CONTACT_EMAIL on the server.'
+        : 'Email delivery is not configured. Set EMAIL_USER (or EMAIL) and EMAIL_PASS on the server.',
     });
   }
 
@@ -145,6 +159,12 @@ app.post('/api/contact', async (req, res) => {
     }
   }
 
+  if (mailProvider === 'resend' && !idempotencyKey) {
+    return res.status(400).json({
+      error: 'A request identifier is required for email delivery. Please refresh the page and try again.',
+    });
+  }
+
   const clientIp = req.ip || 'unknown';
   const previousRequests = (requestsByIp.get(clientIp) || []).filter(
     (timestamp) => now - timestamp < rateLimitWindowMs
@@ -161,34 +181,22 @@ app.post('/api/contact', async (req, res) => {
   let deliveryTimeout;
   const resultPromise = (async () => {
     try {
-      transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 465,
-        secure: true,
-        connectionTimeout: 8_000,
-        greetingTimeout: 8_000,
-        socketTimeout: 15_000,
-        auth: {
-          user: senderAddress,
-          pass: senderPassword,
+      const mail = {
+        from: {
+          name: 'Geetaish Singh Rajput',
+          address: mailProvider === 'resend' ? resendFrom : senderAddress,
         },
-      });
-      const deliveryPromise = transporter.sendMail({
-      from: {
-        name: 'Geetaish Singh Rajput',
-        address: senderAddress,
-      },
-      to: process.env.CONTACT_EMAIL || senderAddress,
-      replyTo: email.trim(),
-      subject: `Portfolio contact: ${subject.trim().replace(/[\r\n]+/g, ' ')}`,
-      text: [
-        `Name: ${fullName.trim()}`,
-        `Email: ${email.trim()}`,
-        `Subject: ${subject.trim()}`,
-        '',
-        message.trim(),
-      ].join('\n'),
-      html: `
+        to: recipientAddress,
+        replyTo: email.trim(),
+        subject: `Portfolio contact: ${subject.trim().replace(/[\r\n]+/g, ' ')}`,
+        text: [
+          `Name: ${fullName.trim()}`,
+          `Email: ${email.trim()}`,
+          `Subject: ${subject.trim()}`,
+          '',
+          message.trim(),
+        ].join('\n'),
+        html: `
         <div style="margin:0;padding:32px 12px;background-color:#f1f5f9;font-family:Arial,Helvetica,sans-serif;color:#0f172a;">
           <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width:640px;margin:0 auto;border-collapse:separate;border-spacing:0;background-color:#ffffff;border:1px solid #e2e8f0;border-radius:16px;overflow:hidden;">
             <tr>
@@ -228,51 +236,141 @@ app.post('/api/contact', async (req, res) => {
           </table>
         </div>
       `,
-      });
-      const timeoutPromise = new Promise((_, reject) => {
-        deliveryTimeout = setTimeout(() => {
-          const error = new Error('SMTP delivery timed out.');
-          error.code = 'ETIMEDOUT';
-          reject(error);
-        }, emailRequestTimeoutMs);
-      });
-      const delivery = await Promise.race([deliveryPromise, timeoutPromise]);
+      };
+      let delivery;
+
+      if (mailProvider === 'resend') {
+        const controller = new AbortController();
+        deliveryTimeout = setTimeout(() => controller.abort(), emailRequestTimeoutMs);
+        const response = await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${resendApiKey}`,
+            'Content-Type': 'application/json',
+            ...(idempotencyKey ? { 'Idempotency-Key': idempotencyKey } : {}),
+          },
+          body: JSON.stringify({
+            from: mail.from.address,
+            to: [mail.to],
+            reply_to: mail.replyTo,
+            subject: mail.subject,
+            text: mail.text,
+            html: mail.html,
+          }),
+          signal: controller.signal,
+        });
+        const providerResult = await response.json();
+
+        if (!response.ok) {
+          const error = new Error(providerResult.message || 'The email provider rejected the request.');
+          error.status = response.status;
+          error.code = providerResult.name || 'RESEND_ERROR';
+          throw error;
+        }
+
+        if (typeof providerResult.id !== 'string' || !providerResult.id) {
+          const error = new Error('The email provider did not confirm acceptance.');
+          error.code = 'RESEND_INVALID_RESPONSE';
+          throw error;
+        }
+
+        delivery = { accepted: [mail.to], messageId: providerResult.id };
+      } else {
+        transporter = nodemailer.createTransport({
+          host: 'smtp.gmail.com',
+          port: 465,
+          secure: true,
+          connectionTimeout: 8_000,
+          greetingTimeout: 8_000,
+          socketTimeout: 15_000,
+          auth: {
+            user: senderAddress,
+            pass: senderPassword,
+          },
+        });
+        const deliveryPromise = transporter.sendMail(mail);
+        const timeoutPromise = new Promise((_, reject) => {
+          deliveryTimeout = setTimeout(() => {
+            const error = new Error('SMTP delivery timed out.');
+            error.code = 'ETIMEDOUT';
+            reject(error);
+          }, emailRequestTimeoutMs);
+        });
+        delivery = await Promise.race([deliveryPromise, timeoutPromise]);
+      }
 
       if (delivery.accepted.length === 0) {
         throw new Error('The mail provider did not accept the message.');
       }
 
-      return { status: 200, body: { message: 'Your message was sent successfully.' } };
+      console.info('Contact email accepted by provider:', {
+        provider: mailProvider,
+        messageId: delivery.messageId,
+      });
+      return {
+        status: 200,
+        body: { message: 'Your message was sent successfully.' },
+      };
     } catch (error) {
       const safeMessage = String(error?.message || 'Unknown email delivery error')
-        .replaceAll(senderPassword, '[redacted]')
-        .replaceAll(senderAddress, '[redacted]');
+        .replaceAll(senderPassword || '\0', '[redacted]')
+        .replaceAll(senderAddress || '\0', '[redacted]')
+        .replaceAll(resendApiKey || '\0', '[redacted]');
       console.error('Contact email delivery failed:', {
+        provider: mailProvider,
         name: error?.name,
         code: error?.code,
         command: error?.command,
         responseCode: error?.responseCode,
+        status: error?.status,
         message: safeMessage,
       });
 
-      if (error?.code === 'EAUTH' || error?.responseCode === 535) {
+      if (
+        error?.code === 'EAUTH' ||
+        error?.responseCode === 535 ||
+        error?.status === 401 ||
+        error?.status === 403
+      ) {
         return {
           status: 502,
-          body: { error: 'Email authentication failed. Check EMAIL_USER (or EMAIL) and the Gmail app password in Render.' },
-          retryable: true,
+          body: {
+            error: mailProvider === 'resend'
+              ? 'Email provider authentication failed. Check RESEND_API_KEY in Render.'
+              : 'Email authentication failed. Check EMAIL_USER (or EMAIL) and the Gmail app password in Render.',
+          },
+          retryable: mailProvider === 'resend',
         };
       }
 
-      if (error?.code === 'ETIMEDOUT') {
+      if (error?.code === 'ETIMEDOUT' || error?.name === 'AbortError') {
         return {
           status: 504,
-          body: { error: 'The email service timed out. Check your inbox before trying again.' },
+          body: {
+            error: `The ${mailProvider === 'resend' ? 'email provider' : 'SMTP connection'} timed out. Check your inbox before trying again.`,
+          },
+          retryable: mailProvider === 'resend',
+        };
+      }
+
+      if (error?.status === 422) {
+        return {
+          status: 502,
+          body: {
+            error: 'The email provider rejected the sender configuration. Verify RESEND_FROM with your email provider.',
+          },
+          retryable: true,
         };
       }
 
       return {
         status: 502,
-        body: { error: 'The email service could not send your message. Please try again later.' },
+        body: {
+          error: mailProvider === 'resend'
+            ? 'The email provider could not send your message. Check the Render logs for the provider error.'
+            : 'The email service could not send your message. Please try again later.',
+        },
+        retryable: mailProvider === 'resend',
       };
     } finally {
       clearTimeout(deliveryTimeout);
