@@ -20,7 +20,7 @@ export const personalData = {
     },
     {
       name: 'Instagram',
-      url: 'https://www.instagram.com/geetaishsinghrajput?igsh=MW5sZGVnYTNsazF3bw%3D%3D&utm_source=qr',
+      url: 'https://www.instagram.com/geetaishsinghrajput?psln=MW5sZGVnYTNsazF3bw%3D%3D&utm_source=qr',
       icon: 'Instagram'
     },
     {

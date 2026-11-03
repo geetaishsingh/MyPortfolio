@@ -88,7 +88,7 @@ export default function Contact({ sectionId = 'contact' }) {
                   <Linkedin size={18} aria-hidden="true" />
                 </a>
                 <a
-                  href="https://www.instagram.com/geetaishsinghrajput?igsh=MW5sZGVnYTNsazF3bw%3D%3D&utm_source=qr"
+                  href="https://www.instagram.com/geetaishsinghrajput?psln=MW5sZGVnYTNsazF3bw%3D%3D&utm_source=qr"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="contact__social-link"
