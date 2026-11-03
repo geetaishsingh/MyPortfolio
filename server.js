@@ -12,8 +12,10 @@ const requestsByIp = new Map();
 const rateLimitWindowMs = 15 * 60 * 1000;
 const rateLimitMaxRequests = 5;
 const allowedOrigins = new Set(
-  (process.env.FRONTEND_URL || '')
-    .split(',')
+  [
+    'https://myportfolio-1zqp.onrender.com',
+    ...(process.env.FRONTEND_URL || '').split(','),
+  ]
     .map((origin) => origin.trim())
     .filter(Boolean)
     .map((origin) => new URL(origin).origin)
@@ -34,8 +36,7 @@ const escapeHtml = (value) =>
   })[character]);
 
 app.disable('x-powered-by');
-app.use(express.json({ limit: '10kb' }));
-app.use('/api', (req, res, next) => {
+app.use((req, res, next) => {
   const origin = req.get('Origin');
   const isAllowedOrigin = origin && allowedOrigins.has(origin);
 
@@ -52,6 +53,7 @@ app.use('/api', (req, res, next) => {
 
   return next();
 });
+app.use(express.json({ limit: '10kb' }));
 
 app.get('/api/health', (_req, res) => {
   return res.status(200).json({ status: 'ok' });
