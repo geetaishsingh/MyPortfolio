@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './ContactForm.scss';
 import './ContactForm.media.scss';
 
@@ -7,6 +7,8 @@ const apiBaseUrl = import.meta.env.DEV
   : (import.meta.env.VITE_API_URL || 'https://myportfoliobackend-rfum.onrender.com').replace(/\/+$/, '');
 
 export default function ContactForm() {
+  const submissionInProgress = useRef(false);
+  const idempotencyRequest = useRef({ payload: '', key: '' });
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -74,16 +76,31 @@ export default function ContactForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validate()) return;
+    if (submissionInProgress.current || !validate()) return;
 
+    const requestBody = JSON.stringify(formData);
+    if (idempotencyRequest.current.payload !== requestBody) {
+      idempotencyRequest.current = {
+        payload: requestBody,
+        key: globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random()}`,
+      };
+    }
+
+    submissionInProgress.current = true;
     setStatus('loading');
     setStatusMessage('');
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 22_000);
 
     try {
       const response = await fetch(`${apiBaseUrl}/api/contact`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        headers: {
+          'Content-Type': 'application/json',
+          'Idempotency-Key': idempotencyRequest.current.key,
+        },
+        body: requestBody,
+        signal: controller.signal,
       });
       const responseBody = await response.text();
       let result = null;
@@ -109,14 +126,23 @@ export default function ContactForm() {
       setStatus('success');
       setStatusMessage(`Thank you, ${formData.fullName}! Your message has been sent.`);
       setFormData({ fullName: '', email: '', subject: '', message: '' });
+      idempotencyRequest.current = { payload: '', key: '' };
     } catch (error) {
       console.error('Contact form submission failed:', error);
       setStatus('error');
-      setStatusMessage(
-        error instanceof TypeError
-          ? 'Could not reach the email server. Please try again later.'
-          : error.message
-      );
+      if (error.name === 'AbortError') {
+        setStatusMessage('The request timed out. Check your inbox before trying again.');
+      } else {
+        setStatusMessage(
+          error instanceof TypeError
+            ? 'Could not reach the email server. Please try again later.'
+            : error.message
+        );
+      }
+    } finally {
+      clearTimeout(timeout);
+      submissionInProgress.current = false;
+      setStatus((currentStatus) => currentStatus === 'loading' ? 'idle' : currentStatus);
     }
   };
 
