@@ -11,6 +11,18 @@ const projectDirectory = fileURLToPath(new URL('.', import.meta.url));
 const requestsByIp = new Map();
 const rateLimitWindowMs = 15 * 60 * 1000;
 const rateLimitMaxRequests = 5;
+const allowedOrigins = new Set(
+  (process.env.FRONTEND_URL || '')
+    .split(',')
+    .map((origin) => origin.trim())
+    .filter(Boolean)
+    .map((origin) => new URL(origin).origin)
+);
+
+if (process.env.NODE_ENV !== 'production') {
+  allowedOrigins.add('http://localhost:5173');
+  allowedOrigins.add('http://127.0.0.1:5173');
+}
 
 const escapeHtml = (value) =>
   value.replace(/[&<>"']/g, (character) => ({
@@ -23,6 +35,23 @@ const escapeHtml = (value) =>
 
 app.disable('x-powered-by');
 app.use(express.json({ limit: '10kb' }));
+app.use('/api', (req, res, next) => {
+  const origin = req.get('Origin');
+  const isAllowedOrigin = origin && allowedOrigins.has(origin);
+
+  if (isAllowedOrigin) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+    res.vary('Origin');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  }
+
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(isAllowedOrigin ? 204 : 403);
+  }
+
+  return next();
+});
 
 app.get('/api/health', (_req, res) => {
   return res.status(200).json({ status: 'ok' });

@@ -2,6 +2,10 @@ import { useState, useEffect } from 'react';
 import './ContactForm.scss';
 import './ContactForm.media.scss';
 
+const apiBaseUrl = import.meta.env.DEV
+  ? ''
+  : (import.meta.env.VITE_API_URL || 'https://myportfoliobackend-rfum.onrender.com').replace(/\/+$/, '');
+
 export default function ContactForm() {
   const [formData, setFormData] = useState({
     fullName: '',
@@ -76,7 +80,7 @@ export default function ContactForm() {
     setStatusMessage('');
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch(`${apiBaseUrl}/api/contact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
